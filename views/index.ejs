@@ -1,0 +1,43 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="container">
+      <h1 class="header">Writings</h1>
+      <div class="writing-section">
+        <% if (writingCount === 0){ %>
+        <div class="empty-writings">
+          <h1>No writings found!</h1>
+        </div>
+        <% } else{ Object.keys(writings).forEach(key => { %>
+        <div class="writing-home">
+          <div class="writing-header">
+            <a href="writing-detail/" id=<%= key %>
+              class="dynamicLink"><%= writings[key]["writingHeader"] %></a
+            >
+          </div>
+          <div class="writing-content">
+            <%= writings[key]["writingContent"] %>
+          </div>
+        </div>
+        <% })} %>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var dynamicLinks = document.querySelectorAll(".dynamicLink");
+
+        dynamicLinks.forEach(function (dynamicLink) {
+          dynamicLink.addEventListener("click", function (event) {
+            var linkId = dynamicLink.id.trim().toLowerCase();
+
+            var modifiedHref = dynamicLink.href + linkId;
+
+            window.location.href = modifiedHref;
+
+            event.preventDefault();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container">
+    <div class="edit-section">
+        <form class="edit-form" action="/edit-writing" method="POST">
+            <input class="index" type="text" name="writingIndex" value=<%= i %> readonly>
+            <label for="writingHeader">Header</label>
+            <input type="text" name="writingHeader" value=<%= writings[i]["writingHeader"]  %> />
+            <label for="writingContent">Writing</label>
+            <textarea type="text" name="writingContent"><%= writings[i]["writingContent"]  %></textarea>
+            <input type="submit" value="Apply Changes" />
+          </form>
+    </div>
+  </div>
+</body>
+</html>

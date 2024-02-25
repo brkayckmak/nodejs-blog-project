@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="container">
+      <h1 class="header">Add Writing</h1>
+      <form class="add-writing-form" action="/add-writing" method="POST">
+        <label for="writing-header">Header</label>
+        <input
+          name="writing-header"
+          id="writing-header"
+          type="text"
+          class="writing-input"
+          placeholder="Header"
+        />
+        <label for="writing-content">Writing</label>
+        <textarea
+          name="writing-content"
+          id="writing-content"
+          class="writing-input"
+          placeholder="Content"
+        ></textarea>
+        
+        <input type="submit" value="Add Writing" />
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+  font-size: 62.5%;
+  color: #343a40;
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  padding: 4.8rem 20%;
+  background-color: #f3f0ff;
+}
+
+/* NAV SECTION */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 3.2rem 12rem;
+  font-size: 2.4rem;
+  background-color: #e5dbff;
+}
+
+.logo a:link, 
+.logo a:visited,
+.nav-page a:link,
+.nav-page a:visited{
+  text-decoration: none;
+  color: inherit;
+
+  transition: all 0.3s;
+}
+
+.logo a:hover,
+.logo a:active,
+.nav-page a:hover,
+.nav-page a:active{
+  font-size: 2.6rem;
+}
+
+.pages ul {
+  list-style: none;
+  display: flex;
+  gap: 2.4rem;
+}
+
+/* WRITING SECTION */
+.header {
+  text-transform: uppercase;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  padding: 3.2rem 0 5.2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.writing-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+}
+
+.empty-writings{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-writings h1{
+  padding: 3.2rem;
+  font-size: 2.4rem;
+  font-weight: 300;
+  border: 1px solid #b197fc;
+  border-radius: 1000px;
+  background-color: #d0bfff;
+}
+
+.writing-home {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  border: 1px solid #91a7ff;
+  box-shadow: 1.2rem 0 1.2rem rgba(145, 167, 255, 0.3);
+  padding: 2.2rem 3rem;
+  background-color: white;
+}
+
+.writing-header a {
+  text-transform: capitalize;
+  text-decoration: none;
+  color: #1864ab;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.writing-content {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+
+/* ADD WRITING SECTION  */
+.add-writing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 2.4rem 0;
+}
+
+.writing--detail{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
+  padding: 2.2rem 3rem;
+  background-color: white;
+}
+
+input[type=text], textarea {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+textarea{
+  height: 20rem;
+}
+
+label {
+  display: inline-block;
+  font-size: 2.4rem;
+}
+
+input[type=submit] {
+  background-color: #45a049;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #04AA6D;
+}
+
+/* WRITING ADDED SECTION */
+.added-info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #91a7ff;
+  border-radius: 1000px;
+  padding: 1.2rem;
+  background-color: #edf2ff;
+  color: #343a40;
+}
+
+/* WRITING DETAIL SECTION */
+.writing-container{
+  border: 1px solid #b197fc;
+  padding: 4.8rem 3.2rem;
+  background-color: #fff;
+}
+
+.writing--header{
+  text-transform: capitalize;
+  text-decoration: none;
+  color: #495057;
+  font-size: 2.4rem;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 0 3.2rem 0;
+}
+
+.writing--content{
+  line-height: 1.8;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.8rem;
+}
+
+.writing-actions{
+  display: flex;
+  justify-content: end;
+  gap: 1.2rem;
+  font-size: 1.6rem;
+  padding: 2.4rem 0;
+}
+
+.writing-actions a{
+  text-decoration: none;
+  border: 1px solid #91a7ff;
+  border-radius: 1000px;
+  padding: 1.2rem;
+  background-color: #edf2ff;
+  color: #343a40;
+}
+
+/* WRITING EDIT SECTION */
+.edit-section{
+  border: 1px solid #91a7ff;
+  box-shadow: 1.2rem 0 1.2rem rgba(145, 167, 255, 0.3);
+  padding: 3.2rem;
+  background-color: #fff;
+}
+
+.edit-form{
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  width: 100%;
+}
+
+.index{
+  display: none;
+}
+
+.edit-form label{
+  font-size: 2.6rem;
+}
+
+/* WRITING DELETE SECTION */
+.delete-question{
+  font-size: 2.4rem;
+  padding: 2.4rem;
+}
+
+.delete-form{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 2.4rem;
+}
+
+
