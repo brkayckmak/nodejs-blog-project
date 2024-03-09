@@ -7,15 +7,15 @@
         <div class="empty-writings">
           <h1>No writings found!</h1>
         </div>
-        <% } else{ Object.keys(writings).forEach(key => { %>
+        <% } else{ writings.forEach(writing => { %>
         <div class="writing-home">
           <div class="writing-header">
-            <a href="writing-detail/" id=<%= key %>
-              class="dynamicLink"><%= writings[key]["writingHeader"] %></a
+            <a href="writing-detail/" id=<%= writing["id"] %>
+              class="dynamicLink"><%= writing["writingHeader"] %></a
             >
           </div>
           <div class="writing-content">
-            <%= writings[key]["writingContent"] %>
+            <%= writing["writingContent"] %>
           </div>
         </div>
         <% })} %>

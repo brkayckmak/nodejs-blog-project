@@ -1,79 +1,80 @@
 import express from "express";
 import bodyParser from "body-parser";
+import axios from "axios";
 
 const app = express();
 const port = 3000;
-let writingHeader = "";
-let writingContent = "";
-let writingCount = 0;
+const API_URL = "http://localhost:4000";
 
-let writings = {};
-
-function addWritingToObject(req) {
-  writingHeader = req.body["writing-header"];
-  writingContent = req.body["writing-content"];
-  writings[writingCount] = {
-    writingHeader: writingHeader,
-    writingContent: writingContent,
-  };
-  writingCount++;
-}
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.render("index.ejs", {
-    writings: writings,
-    writingCount: Object.keys(writings).length,
-  });
+app.get("/", async (req, res) => {
+  try {
+    const allWritings = await axios.get(`${API_URL}/writings`);
+    res.render("index.ejs", {
+      writings: allWritings.data,
+      writingCount: allWritings.data.length,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching posts" });
+  }
 });
 
 app.get("/add-writing", (req, res) => {
   res.render("add-writing.ejs");
 });
 
-app.post("/add-writing", (req, res) => {
-  addWritingToObject(req);
-  res.render("writing-added.ejs");
-});
-
-app.get("/writing-detail/:writingId", (req, res) => {
-  const writingId = req.params.writingId;
-  res.render("writing-detail.ejs", { writings: writings, i: writingId });
-});
-
-app.get("/writing-edit/:writingId", (req, res) => {
-  const writingId = req.params.writingId;
-  res.render("writing-edit.ejs", { writings: writings, i: writingId });
-});
-
-app.post("/edit-writing", (req, res) => {
-  writingHeader = req.body["writingHeader"];
-  writingContent = req.body["writingContent"];
-  const writingIndex = req.body["writingIndex"];
-
-  writings[writingIndex]["writingHeader"] = writingHeader;
-  writings[writingIndex]["writingContent"] = writingContent;
-
-  res.redirect(301, `/writing-detail/${writingIndex}`);
-});
-
-app.get("/writing-delete/:writingId", (req, res) => {
-  const writingId = req.params.writingId;
-  res.render("writing-delete.ejs", { writings: writings, i: writingId });
-});
-
-app.post("/delete-writing", (req, res) => {
-  const writingIndex = req.body["writingIndex"].toString();
-  const deleteDecision = req.body["choice"];
-  if (deleteDecision === "yes") {
-    delete writings[writingIndex];
+app.post("/api/add-writing", async (req, res) => {
+  try {
+    const response = await axios.post(`${API_URL}/writings`, req.body);
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).json({ message: "Error creating post." });
   }
-  res.render("index.ejs", {
-    writings: writings,
-    writingCount: Object.keys(writings).length,
-  });
+});
+
+app.get("/writing-detail/:id", async (req, res) => {
+  const response = await axios.get(
+    `${API_URL}/writing-detail/${req.params.id}`
+  );
+  if (response.status == 200) {
+    res.render("writing-detail.ejs", { writing: response.data });
+  } else if (response.status == 404) {
+    res.redirect("/");
+  }
+});
+
+app.get("/writing-edit/:id", async (req, res) => {
+  const response = await axios.get(
+    `${API_URL}/writing-detail/${req.params.id}`
+  );
+  res.render("writing-edit.ejs", { writing: response.data });
+});
+
+app.post("/api/writing-edit/:id", async (req, res) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/writings/${req.params.id}`,
+      req.body
+    );
+    res.redirect(301, `/writing-detail/${req.params.id}`);
+  } catch (error) {
+    res.status(500).json({ message: "Error editing post." });
+  }
+});
+
+app.get("/writing-delete/:id", async (req, res) => {
+  res.render("writing-delete.ejs", { id: req.params.id });
+});
+
+app.post("/api/writing-delete/:id", async (req, res) => {
+  const deleteDecision = req.body.choice;
+  if (deleteDecision === "yes") {
+    const response = await axios.delete(`${API_URL}/writings/${req.params.id}`);
+  }
+  res.redirect("/");
 });
 
 app.listen(port, (req, res) => {

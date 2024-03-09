@@ -2,12 +2,11 @@
 
 <div class="container">
     <div class="edit-section">
-        <form class="edit-form" action="/edit-writing" method="POST">
-            <input class="index" type="text" name="writingIndex" value=<%= i %> readonly>
+        <form class="edit-form" action="/api/writing-edit/<%= writing["id"] %>" method="POST">
             <label for="writingHeader">Header</label>
-            <input type="text" name="writingHeader" value=<%= writings[i]["writingHeader"]  %> />
+            <input type="text" name="writingHeader" value=<%= writing["writingHeader"]  %> />
             <label for="writingContent">Writing</label>
-            <textarea type="text" name="writingContent"><%= writings[i]["writingContent"]  %></textarea>
+            <textarea type="text" name="writingContent"><%= writing["writingContent"]  %></textarea>
             <input type="submit" value="Apply Changes" />
           </form>
     </div>

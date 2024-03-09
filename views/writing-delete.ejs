@@ -2,8 +2,7 @@
 
 <div class="container">
     <p class="delete-question">Do you want to delete this writing?</p>
-        <form class="delete-form" action="/delete-writing" method="POST">
-          <input class="index" type="text" name="writingIndex" value=<%= i %> readonly>
+        <form class="delete-form" action="/api/writing-delete/<%= id %>" method="POST">
           <label>
             <input type="radio" name="choice" value="yes" checked>
             Yes

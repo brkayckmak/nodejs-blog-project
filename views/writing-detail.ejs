@@ -4,14 +4,14 @@
     <div class="writing-container">
       <div class="writing-section">
         <div class="writing-detail">
-          <p class="writing--header"><%= writings[i]["writingHeader"] %></p>
-          <p class="writing--content"><%= writings[i]["writingContent"] %></p>
+          <p class="writing--header"><%= writing["writingHeader"] %></p>
+          <p class="writing--content"><%= writing["writingContent"] %></p>
         </div>
       </div>
     </div>
       <div class="writing-actions">
-        <a href="/writing-edit/" id="<%= i %>" class="writing--edit dynamicLink">Edit</a>
-        <a href="/writing-delete/" id="<%= i %>" class="writing--delete dynamicLink">Delete</a>
+        <a href="/writing-edit/" id="<%= writing["id"] %>" class="writing--edit dynamicLink">Edit</a>
+        <a href="/writing-delete/" id="<%= writing["id"] %>" class="writing--delete dynamicLink">Delete</a>
       </div>
   </div>
 
